@@ -23,6 +23,27 @@ class ToDo {
     return JSON.parse(response.getContentText())
   }
 
+  createTask(folderID: string, taskSubject: string, date: string) {
+    const data = {
+      "Subject": taskSubject,
+      "StartDateTime": {
+        "DateTime": date
+      },
+      "DueDateTime": {
+        "DateTime": date
+      }
+    }
+
+    const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+      headers: ToDo.getAuthHeaders(this.accessToken),
+      payload: data,
+      method: 'post'
+    }
+
+    const response = this.fetchApp.fetch(`${ToDo.BASE_URL}/taskfolders(${folderID})/tasks`, options)
+    return JSON.parse(response.getContentText())
+  }
+
 }
 
 export default ToDo;
