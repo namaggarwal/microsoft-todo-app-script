@@ -27,10 +27,12 @@ class ToDo {
     const data = {
       "Subject": taskSubject,
       "StartDateTime": {
-        "DateTime": date
+        "DateTime": date,
+        "TimeZone": "Pacific Standard Time"
       },
       "DueDateTime": {
-        "DateTime": date
+        "DateTime": date,
+        "TimeZone": "Pacific Standard Time"
       }
     }
 
@@ -41,7 +43,7 @@ class ToDo {
       contentType: 'application/json'
     }
 
-    const response = this.fetchApp.fetch(`${ToDo.BASE_URL}/taskfolders(${folderID})/tasks`, options)
+    const response = this.fetchApp.fetch(`${ToDo.BASE_URL}/taskfolders('${folderID}')/tasks`, options)
     return JSON.parse(response.getContentText())
   }
 
