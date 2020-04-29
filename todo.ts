@@ -37,7 +37,8 @@ class ToDo {
     const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
       headers: ToDo.getAuthHeaders(this.accessToken),
       payload: data,
-      method: 'post'
+      method: 'post',
+      contentType: 'application/json'
     }
 
     const response = this.fetchApp.fetch(`${ToDo.BASE_URL}/taskfolders(${folderID})/tasks`, options)
